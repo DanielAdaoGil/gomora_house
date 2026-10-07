@@ -1,0 +1,23 @@
+# Dependências
+node_modules
+
+# Build
+dist
+build
+
+# Cache do gh-pages
+.cache
+
+# Logs
+*.log
+npm-debug.log*
+
+# Ambiente
+.env
+.env.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
