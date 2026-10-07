@@ -53,13 +53,38 @@ const descricoes = [
   "Após a morte de Jonasi, a rivalidade entre suas mulheres continua. Joyce e Essie entram em conflito sobre como homenagear e preservar a memória do marido, enquanto o legado e os segredos de Jonasi continuam causando problemas."
 ];
 
+const megaUrl = [
+  "https://mega.nz/file/Ol5mwYpI#NyNL6xPmgwteAh_qDATF-MooTChovbgL7bAhrAns3I8",
+  "https://mega.nz/file/CsRWAAzR#ejJodUE1-VmrXkgX0JZHj6v7YN76JMCyvzcHvmt7ABo",
+  "https://mega.nz/file/CsRWAAzR#ejJodUE1-VmrXkgX0JZHj6v7YN76JMCyvzcHvmt7ABo",
+  "https://mega.nz/file/CsRWAAzR#ejJodUE1-VmrXkgX0JZHj6v7YN76JMCyvzcHvmt7ABo",
+  "https://mega.nz/file/jwxDQAIb#I_Z5pb7tHwOXpEEhb_o2QDlSQYzGwYlUial0zVIO020",
+  "https://mega.nz/file/i1Qk1I7b#WndIhmdH9MrYZDM_UXbt5XZFPQNNKLWJiZn2tFbJJN0",
+  "https://mega.nz/file/a9RwTQAK#aI0YbW7eWx4G0qQgn_kIqSHKwDXZdDO3IfHtlZL9wWE",
+  "URL do episódio 8",
+  "URL do episódio 9",
+  "URL do episódio 10",
+  "URL do episódio 11",
+  "URL do episódio 12",
+  "URL do episódio 13",
+  "URL do episódio 14",
+  "URL do episódio 15",
+  "URL do episódio 16",
+  "URL do episódio 17",
+  "URL do episódio 18",
+  "URL do episódio 19",
+  "URL do episódio 20",
+  "URL do episódio 21",
+  "URL do episódio 22"
+];
+
 export const episodes: Episode[] = Array.from({ length: 22 }, (_, i) => ({
   id: i + 1,
   title: `Episódio ${i + 1}`,
   year: 2026,
   description: descricoes[i] ?? "Descrição a ser atualizada.",
   cover: "assets/img/capa.jpg",
-  megaUrl: `MEGA_LINK_EPISODIO_${String(i + 1).padStart(2, "0")}`,
+  megaUrl: megaUrl[i] ?? "URL a ser atualizada.",
 }))
 
 export const getEpisode = (id?: string) => episodes.find((e) => e.id === Number(id))
