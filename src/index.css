@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@theme { --font-serif: "Cormorant Garamond", Georgia, serif; --font-sans: "Inter", system-ui, sans-serif; --color-gold:#c9a24b; --color-ink:#16130f; }
+html,body{margin:0;background:#16130f;color:#fff;font-family:var(--font-sans);scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.noscroll::-webkit-scrollbar{display:none;width:0}
+.noscroll{scrollbar-width:none;-ms-overflow-style:none}
+:focus-visible{outline:2px solid var(--color-gold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
