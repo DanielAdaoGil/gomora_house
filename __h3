@@ -1,0 +1,22 @@
+/* ---- lightbox ---- */
+#lit{position:fixed;inset:0;z-index:11;display:flex;align-items:center;justify-content:center;padding:22px;opacity:0;pointer-events:none;transition:opacity .35s}
+body.lit #lit{opacity:1;pointer-events:auto}
+body.lit #stage,body.lit .word,body.lit .cue,body.lit .col,body.lit #gridb{filter:blur(9px) brightness(.55)}
+#lbox{position:relative;width:min(430px,92vw);background:#0d0405;border:1px solid var(--ring);box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 60px rgba(255,35,56,.12)}
+#lph{position:relative;aspect-ratio:16/10;overflow:hidden}
+#lph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#lph .sh{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(13,4,5,.95))}
+#lbody{padding:24px 26px 28px;text-align:left}
+#lbody .k{font-size:10px;letter-spacing:.4em;color:var(--accent)}
+#lbody h3{font-family:var(--fd);font-size:34px;margin:8px 0 4px}
+#lbody .yr{font-size:11px;letter-spacing:.3em;color:var(--dim)}
+#lbody .ds{margin:16px 0 4px;font-size:14px;line-height:1.75;color:rgba(255,255,255,.82)}
+#dl{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:linear-gradient(180deg,var(--accent),#a60f1d);color:#fff;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.24em;padding:15px 26px;border-radius:3px;box-shadow:0 10px 30px rgba(255,35,56,.35);transition:transform .2s,box-shadow .2s}
+#dl:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(255,35,56,.5)}
+#dl.off{background:#2a1215;color:rgba(255,255,255,.5);box-shadow:none;cursor:not-allowed}
+#ledit{margin-top:14px;font-size:10px;letter-spacing:.2em;color:var(--faint)}
+#ledit button{background:none;border:1px solid rgba(255,255,255,.18);color:var(--dim);font-size:9px;letter-spacing:.24em;padding:8px 12px;cursor:pointer;margin-left:8px}
+#ledit button:hover{border-color:var(--accent);color:#fff}
+#lback{display:block;margin:18px auto 0;background:none;border:0;color:var(--dim);font-size:11px;letter-spacing:.3em;cursor:pointer}
+#lback:hover{color:#fff}
+#lx{position:absolute;top:10px;right:12px;background:none;border:0;color:#fff;font-size:26px;cursor:pointer;line-height:1;z-index:2;text-shadow:0 2px 8px #000}

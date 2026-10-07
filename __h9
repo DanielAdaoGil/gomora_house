@@ -1,0 +1,71 @@
+/* ============ GRID + LIGHTBOX + DOWNLOAD ============ */
+function pad2(n){return String(n).padStart(2,'0');}
+function isUrl(u){return /^https?:\/\//i.test(u||'');}
+function buildGrid(){
+var box=document.getElementById('cards');
+for(var i=0;i<N;i++){
+(function(i){
+var f=document.createElement('figure');
+f.innerHTML='<img alt="Episódio '+(i+1)+' — O Polígamo"/><div class="sh"></div><figcaption><span class="epnum">EP '+pad2(i+1)+'</span><span class="ept">EPISÓDIO '+(i+1)+'</span></figcaption>';
+f.addEventListener('click',function(){openLit(i,null);});
+box.appendChild(f);
+})(i);
+}
+}
+var litI=-1,litFrom=null;
+function openLit(i,from){
+litI=i;litFrom=from||null;
+var r=from?from.getBoundingClientRect():null,lb=document.getElementById('lbox'),n=lb.getBoundingClientRect();
+if(r)lb.style.transform='translate('+(r.left+(r.width-n.width)/2-n.left)+'px,'+(r.top+(r.height-n.height)/2-n.top)+'px) scale('+(r.width/n.width)+')';
+else lb.style.transform='scale(.92)';
+lb.style.transition='none';lb.getBoundingClientRect();
+lb.style.transition='transform .45s cubic-bezier(.2,.7,.2,1)';lb.style.transform='';
+document.getElementById('lk').textContent='EPISÓDIO '+pad2(i+1);
+document.getElementById('lt').textContent='Episódio '+(i+1);
+document.getElementById('ld').textContent=DESC[i];
+var a=document.getElementById('dl'),u=DL[i];
+if(isUrl(u)){a.href=u;a.classList.remove('off');a.innerHTML='⭳ BAIXAR EPISÓDIO';}
+else{a.href='#';a.classList.add('off');a.innerHTML='LINK EM BREVE';}
+a.onclick=function(e){if(!isUrl(DL[litI]))e.preventDefault();};
+document.body.classList.add('lit');document.body.classList.add('locked');
+document.getElementById('lback').focus();
+}
+function closeLit(){
+document.body.classList.remove('lit');
+if(!document.body.classList.contains('grid'))document.body.classList.remove('locked');
+}
+document.getElementById('lx').addEventListener('click',closeLit);
+document.getElementById('lback').addEventListener('click',closeLit);
+document.getElementById('lit').addEventListener('click',function(e){if(e.target===this)closeLit();});
+document.getElementById('leditb').addEventListener('click',function(){
+var cur=DL[litI]||'';
+var v=prompt('Link de download do Episódio '+(litI+1)+':',isUrl(cur)?cur:'https://');
+if(v===null)return;v=v.trim();
+try{var ov=JSON.parse(localStorage.getItem(LSKEY)||'{}');ov[String(litI+1)]=v;localStorage.setItem(LSKEY,JSON.stringify(ov));}catch(e){}
+DL[litI]=v;openLitRefresh();
+});
+function openLitRefresh(){
+var a=document.getElementById('dl'),u=DL[litI];
+if(isUrl(u)){a.href=u;a.classList.remove('off');a.innerHTML='⭳ BAIXAR EPISÓDIO';}
+else{a.href='#';a.classList.add('off');a.innerHTML='LINK EM BREVE';}
+}
+/* ============ MENU / GRID VIEW ============ */
+var menub=document.getElementById('menub');
+menub.addEventListener('click',function(){
+var m=document.body.classList.toggle('menu');
+menub.classList.toggle('x',m);menub.querySelector('span').textContent=m?'Fechar':'Menu';
+});
+document.querySelectorAll('#menu a').forEach(function(a){
+a.addEventListener('click',function(e){
+e.preventDefault();
+document.body.classList.remove('menu');menub.classList.remove('x');menub.querySelector('span').textContent='Menu';
+var k=a.dataset.m;
+if(k==='epi')openGrid();else if(k==='gal')closeGrid();
+});
+});
+function openGrid(){closeLit();document.body.classList.add('grid');document.body.classList.add('locked');}
+function closeGrid(){document.body.classList.remove('grid');if(!document.body.classList.contains('lit'))document.body.classList.remove('locked');}
+document.getElementById('gridb').addEventListener('click',function(){
+document.body.classList.contains('grid')?closeGrid():openGrid();
+});
+document.getElementById('word').addEventListener('click',function(e){e.preventDefault();closeGrid();window.scrollTo(0,0);});

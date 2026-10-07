@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="pt">
 <head>
+  <script type="module">import { injectIntoGlobalHook } from "/gomora_house/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+  <script type="module" src="/gomora_house/@vite/client"></script>
+
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Gomora Vision — O Polígamo · Central de Episódios</title>
@@ -388,16 +395,12 @@ var n=(litI+(e.key==='ArrowRight'?1:N-1))%N;closeLit();openLit(n,null);
 });
 /* ============ SCROLL: HERO → SPHERE ============ */
 var scrollAdj=window.addEventListener('wheel',function(e){
-if(!REVEAL||document.body.classList.contains('lit')||document.body.classList.contains('grid')||document.body.classList.contains('menu'))return;
-if(!HEROGONE){
+if(!REVEAL||HEROGONE||document.body.classList.contains('lit')||document.body.classList.contains('grid')||document.body.classList.contains('menu'))return;
 e.preventDefault();
 SCROLL+=e.deltaY;
 if(SCROLL>60){
 HEROGONE=true;document.body.classList.remove('hero');document.body.classList.add('heroGone');
 document.body.classList.remove('locked');
-}
-}else{
-if(e.deltaY<0&&tScale<=0.56){HEROGONE=false;SCROLL=0;document.body.classList.add('hero');document.body.classList.remove('heroGone');document.body.classList.add('locked');}
 }
 },{passive:false});
 addEventListener('touchmove',function(e){
