@@ -3,10 +3,9 @@ import { motion } from 'framer-motion'
 import Gallery from '../components/Gallery'
 const Scene = lazy(() => import('../components/Scene'))
 
-const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export default function Home() {
-  const [inside, setInside] = useState(() => reduced || sessionStorage.getItem('gh-inside') === '1')
+  const [inside, setInside] = useState(() => new URLSearchParams(location.search).has('intro') ? false : sessionStorage.getItem('gh-inside') === '1')
   const [started, setStarted] = useState(inside)
   const [ready, setReady] = useState(false)
   const [pct, setPct] = useState(0)
@@ -26,7 +25,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', on)
   }, [started, inside])
 
-  if (inside) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}><Gallery /></motion.div>
+  if (inside) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}><Gallery onReplay={() => { sessionStorage.removeItem('gh-inside'); setStarted(false); setPct(0); setProg(0); p.current = 0; setInside(false) }} /></motion.div>
 
   if (!started) return (
     <main className="fixed inset-0 grid place-items-center bg-ink text-center">
@@ -35,6 +34,7 @@ export default function Home() {
         <p className="mt-4 text-sm tracking-widest text-white/60">Preparando a experiência...</p>
         <div className="mx-auto mt-6 h-px w-56 bg-white/15"><div className="h-px bg-gold transition-all" style={{ width: `${pct}%` }} /></div>
         {pct >= 100 && <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={() => setStarted(true)} className="mt-10 border border-gold px-8 py-3 text-sm tracking-[.3em] text-gold transition hover:bg-gold hover:text-ink">ENTRAR NA GOMORA HOUSE</motion.button>}
+        {pct >= 100 && <div><button onClick={() => { sessionStorage.setItem('gh-inside', '1'); setInside(true); setStarted(true) }} className="mt-5 text-xs tracking-widest text-white/50 hover:underline">Ir direto para a galeria</button></div>}
       </div>
     </main>
   )

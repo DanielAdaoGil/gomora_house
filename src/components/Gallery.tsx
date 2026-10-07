@@ -23,11 +23,11 @@ const Vase = ({ side }: { side: 'left' | 'right' }) => (
   </svg>
 )
 
-export default function Gallery() {
+export default function Gallery({ onReplay }: { onReplay?: () => void }) {
   const [sel, setSel] = useState<Episode | null>(null)
   return (
     <div className="noscroll fixed inset-0 overflow-y-auto bg-gradient-to-b from-[#fbf8f3] to-[#ece5d8] text-ink">
-      <header className="pointer-events-none fixed left-4 top-4 z-30 text-xs tracking-[.3em] text-ink/70">GOMORA HOUSE · TEMPORADA 1</header>
+      <header className="fixed left-4 top-4 z-30 flex items-center gap-4 text-xs tracking-[.3em] text-ink/70">GOMORA HOUSE · TEMPORADA 1 {onReplay && <button onClick={onReplay} className="underline-offset-4 hover:underline">↺ REVER ENTRADA</button>}</header>
       <main className="relative mx-auto min-h-full max-w-6xl px-4 pb-32 pt-20 sm:px-8">
         <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="mb-10 text-center font-serif text-4xl font-semibold sm:text-6xl">Desfrute a 1ª Temporada</motion.h1>
         <ul className="grid grid-cols-3 gap-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-6" style={{ perspective: 1200 }}>
