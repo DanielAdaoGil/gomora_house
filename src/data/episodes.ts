@@ -71,7 +71,7 @@ const megaUrl = [
   "https://mega.nz/file/GxwQSBDB#pfU9Fd49MfxSKr8M-6gifrqlyEBX7gavEwEdvoJCYWE",
   "https://mega.nz/file/G9YjDDLK#uB2GbeTBGoh2sNJprAvlzA4g1wx_YjlZYV2lYrjZVR0",
   "https://mega.nz/file/D1xC3JhA#alK5nzTdiZr8pwCyBYXv5c0j1ingCVhiCivzV5ZKw0o",
-  "",
+  "https://mega.nz/file/SoJ0RDIY#Zer2YdwkpqnzUEDmF2GrK-Qj4cRzM-rv2MmaFT58M3s",
   "",
   "https://mega.nz/file/rsgylD6a#pxPFQVEGC54QDe65w3GPspIjg9hK3aJrbJ5g_x9PLts",
   "https://mega.nz/file/K4xHXD7L#UelUeBVYmyo8v_nEyg_lfqnMGbnRCCSRvVro2OSDQn0",
